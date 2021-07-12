@@ -1,4 +1,5 @@
 <template>
+ <!-- eslint-disable-next-line vue/max-attributes-per-line -->
 	<div>
 		<!-- Header -->
 		<header id="header" class="bg-gray-700">
