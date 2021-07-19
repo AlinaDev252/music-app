@@ -72,12 +72,12 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <form v-show="tab === 'register'">
+          <vee-form v-show="tab === 'register'">
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
-              <input type="text"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
+              <vee-field type="text" name="name"
+                class= "block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Name" />
             </div>
@@ -133,7 +133,7 @@
                 hover:bg-purple-700">
               Submit
             </button>
-          </form>
+          </vee-form>
         </div>
       </div>
     </div>
