@@ -215,6 +215,9 @@ export default {
   },
   methods: {
     ...mapMutations(['toggleAuthModal']),
+    register(values) {
+      console.log(values);
+    },
   },
 };
 </script>
