@@ -199,7 +199,7 @@ export default {
       schema: {
         name: 'required|min:3|max:10|alpha_spaces',
         email: 'required|min:3|max:10|email',
-        age: '',
+        age: 'required|min_value:18|max_value:100',
         pasword: '',
         confirm_pasword: '',
         country: '',
