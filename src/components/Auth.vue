@@ -197,11 +197,11 @@ export default {
     return {
       tab: 'login',
       schema: {
-        name: 'required|min:3|max:10|alpha_spaces',
+        name: 'required|min:3|max:100|alpha_spaces',
         email: 'required|min:3|max:10|email',
         age: 'required|min_value:18|max_value:100',
-        pasword: '',
-        confirm_pasword: '',
+        password: 'required|min:3|max:100',
+        confirm_pasword: 'confirmed:@password',
         country: '',
         tos: '',
       },

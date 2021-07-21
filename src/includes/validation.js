@@ -4,8 +4,14 @@ import {
 
 // import rules
 import {
-  required, min, max, alpha_spaces as alphaSpaces, email,
-  min_value as minVal, max_value as maxVal,
+  required,
+  min,
+  max,
+  alpha_spaces as alphaSpaces,
+  email,
+  min_value as minVal,
+  max_value as maxVal,
+  confirmed,
 } from '@vee-validate/rules';
 
 export default {
@@ -14,7 +20,7 @@ export default {
     app.component('VeeField', VeeField);
     app.component('ErrorMessage', ErrorMessage);
 
-    // rules registration
+    // global rules registration
     defineRule('required', required);
     defineRule('min', min);
     defineRule('max', max);
@@ -22,5 +28,6 @@ export default {
     defineRule('email', email);
     defineRule('min_value', minVal);
     defineRule('max_value', maxVal);
+    defineRule('confirmed', confirmed);
   },
 };
