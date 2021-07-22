@@ -87,7 +87,12 @@
 						</button>
 					</form>
 					<!-- Registration Form -->
-					<vee-form v-show="tab === 'register'" :validation-schema="schema" @submit="register" :initial-values="userData">
+					<vee-form
+						v-show="tab === 'register'"
+						:validation-schema="schema"
+						@submit="register"
+						:initial-values="userData"
+					>
 						<!-- Name -->
 						<div class="mb-3">
 							<label class="inline-block mb-2">Name</label>
@@ -205,9 +210,9 @@ export default {
         email: 'required|min:3|max:100|email',
         age: 'required|min_value:18|max_value:100',
         password: 'required|min:3|max:100',
-        confirm_pasword: 'confirmed:@password',
-        country: 'required|excluded:Antarctica',
-        tos: 'required',
+        confirm_password: 'passwords_mismatch:@password',
+        country: 'required|country_excluded:Antarctica',
+        tos: 'tos',
       },
       userData: {
         country: 'USA',
