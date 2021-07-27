@@ -57,26 +57,30 @@
 					</ul>
 
 					<!-- Login Form -->
-					<form v-show="tab === 'login'">
+					<vee-form :validation-schema="loginSchema" v-show="tab === 'login'">
 						<!-- Email -->
 						<div class="mb-3">
 							<label class="inline-block mb-2">Email</label>
-							<input
+							<vee-field
 								type="email"
+								name="email"
 								class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
 								placeholder="Enter Email"
 							/>
+							<ErrorMessage class="text-red-600" name="email" />
 						</div>
 						<!-- Password -->
 						<div class="mb-3">
 							<label class="inline-block mb-2">Password</label>
-							<input
+							<vee-field
 								type="password"
+								name="password"
 								class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
 								placeholder="Password"
 							/>
+							<ErrorMessage class="text-red-600" name="password" />
 						</div>
 						<button
 							type="submit"
@@ -85,7 +89,7 @@
 						>
 							Submit
 						</button>
-					</form>
+					</vee-form>
 					<!-- Registration Form -->
 					<div class="text-white text-center font-bold p-5 mb-4" v-if="reg_show_alert" :class="reg_alert_variant">
 						{{ reg_alert_msg }}
@@ -225,6 +229,10 @@ export default {
       reg_show_alert: false,
       reg_alert_variant: 'bg-blue-500',
       reg_alert_msg: 'Please wait! Your account is being created.',
+      loginSchema: {
+        email: 'required|email',
+        password: 'required|min:3|max:32',
+      },
     };
   },
   computed: {
