@@ -57,7 +57,7 @@
 					</ul>
 
 					<!-- Login Form -->
-					<vee-form :validation-schema="loginSchema" v-show="tab === 'login'">
+					<vee-form :validation-schema="loginSchema" v-show="tab === 'login'" @submit="login">
 						<!-- Email -->
 						<div class="mb-3">
 							<label class="inline-block mb-2">Email</label>
@@ -251,6 +251,10 @@ export default {
 
       this.reg_alert_variant = 'bg-green-500';
       this.reg_alert_msg = 'Success! Your account has been created!';
+      console.log(values);
+    },
+    login(values) {
+      // this will help us verify that the function was executed if the validation was successful.
       console.log(values);
     },
   },
