@@ -1,6 +1,7 @@
 // import the app package of firebase module which is the core feature of firebase
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 // My web app's Firebase configuration
 const firebaseConfig = {
