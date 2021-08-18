@@ -118,6 +118,10 @@ export default {
       userData: {
         country: 'USA',
       },
+      reg_show_alert: false,
+      reg_in_submission: false,
+      reg_alert_variant: 'bg-blue-500',
+      reg_alert_msg: 'Please wait! Your account is being created.',
     };
   },
   methods: {
