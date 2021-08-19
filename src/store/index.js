@@ -5,6 +5,7 @@ export default createStore({
   state: {
     authModalShow: false,
     userLoggedIn: false,
+    signout: true,
   },
   mutations: {
     toggleAuthModal: (state) => {
@@ -47,7 +48,7 @@ export default createStore({
       }
     },
     async signout({ commit }) {
-      await auth.signout();
+      await auth.signOut();
 
       commit('toggleAuth');
     },
