@@ -83,7 +83,8 @@ export default {
       this.login_alert_msg = 'Success! You are now logged in!';
 
       // this will help us verify that the function was executed if the validation was successful.
-      console.log(values);
+      // console.log(values);
+      window.location.reload();
     },
   },
 };
