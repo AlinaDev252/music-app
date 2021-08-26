@@ -36,4 +36,12 @@ const router = createRouter({
   linkExactActiveClass: 'text-yellow-500',
 });
 
+// allows us to perform checks on the user
+router.beforeEach((to, from, next) => {
+  console.log('Global Guard');
+  console.log(to, from);
+
+  next();
+});
+
 export default router;
