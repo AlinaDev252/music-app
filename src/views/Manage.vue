@@ -140,19 +140,19 @@
 </template>
 
 <script>
-import store from '@/store';
+//
 
 export default {
   name: 'manage',
-  beforeRouteEnter(to, from, next) {
-    if (store.state.userLoggedIn) {
-      next();
-    } else {
-      next({ name: 'home' });
-    }
-    // console.log(store.state.userLoggedIn);
-    // very important to call the next() function so that the router will render the component
-    // next();
-  },
+  // beforeRouteEnter(to, from, next) {
+  //   if (store.state.userLoggedIn) {
+  //     next();
+  //   } else {
+  //     next({ name: 'home' });
+  //   }
+  // console.log(store.state.userLoggedIn);
+  // very important to call the next() function so that the router will render the component
+  // next();
+  // },
 };
 </script>
