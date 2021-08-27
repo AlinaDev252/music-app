@@ -56,9 +56,9 @@ export default {
       });
 
       // console.log(this.$route);
-      // if (this.$route.meta.requiresAuth) {
-      //   this.$router.push({ name: 'home' });
-      // }
+      if (this.$route.meta.requiresAuth) {
+        this.$router.push({ name: 'home' });
+      }
     },
     // toggleAuthModal() {
     //   this.$store.commit('toggleAuthModal');
