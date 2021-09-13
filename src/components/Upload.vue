@@ -65,6 +65,7 @@ export default {
       // files validation to prevent user's uploading other files rather than audio
       files.forEach((file) => {
         if (file.type !== 'audio/mpeg') {
+        /* eslint-disable no-useless-return */
           return;
         }
       });
