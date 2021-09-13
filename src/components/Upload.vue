@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import { storage } from '@/includes/firebase';
+
 export default {
   name: 'Upload',
   data() {
@@ -68,6 +70,12 @@ export default {
         /* eslint-disable no-useless-return */
           return;
         }
+        // the bellow variable refers to the actual storageBucket=music-9e7e7.appspot.com
+        const storageRef = storage.ref();
+        const songsRef = storageRef.child(`songs/${file.name}`);
+
+        // initialize the Upload process to Firebase
+        songsRef.put(file);
       });
 
       console.log(files);
