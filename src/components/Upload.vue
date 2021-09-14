@@ -68,16 +68,17 @@ export default {
         // initialize the Upload process to Firebase
         const task = songsRef.put(file);
 
-        this.uploads.push({
+        const uploadIndex = this.uploads.push({
           task,
           current_progress: 0,
           name: file.name,
-        });
+        }) - 1;
 
+        // the snapshot object represents the current status of the upload
         task.on('state_changed', (snapshot) => {
         // calculate how much has been transferred
-        /* eslint-disable */
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          this.uploads[uploadIndex].current_progress = progress;
         });
       });
 
