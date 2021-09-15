@@ -13,7 +13,8 @@
 					<div class="p-6">
 						<!-- Composition Items -->
             <!-- The job of the CompositionItem component is to display a single song -->
-            <composition-item v-for="song in songs" :key="song.docID" />
+            <composition-item v-for="song in songs" :key="song.docID"
+              :song="song"/>
 							</div>
 						</div>
 					</div>
