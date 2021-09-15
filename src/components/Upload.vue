@@ -21,6 +21,7 @@
 			>
 				<h5>Drop your files here</h5>
 			</div>
+      <input type="file" multiple @change="upload($event)"/>
 			<hr class="my-6" />
 			<!-- Progess Bars -->
 			<div class="mb-4" v-for="upload in uploads" :key="upload.name">
@@ -55,7 +56,9 @@ export default {
       this.is_dragover = false;
 
       // convert the files object into an array
-      const files = [...$event.dataTransfer.files];
+      const files = $event.dataTransfer
+        ? [...$event.dataTransfer.files]
+        : [...$event.target.files];
 
       // files validation to prevent user's uploading other files rather than audio
       files.forEach((file) => {
