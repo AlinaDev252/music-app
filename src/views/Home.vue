@@ -49,6 +49,8 @@ export default ({
   data() {
     return {
       songs: [],
+      maxPerPage: 25,
+      pendingRequest: false,
     };
   },
   async created() {
@@ -66,12 +68,35 @@ export default ({
       const botttomOfWindow = Math.round(scrollTop) + innerHeight === offsetHeight;
 
       if (botttomOfWindow) {
-        console.log('Bottom of window');
+        this.getSongs();
       }
     },
     async getSongs() {
-      // initiate the query; get function will return a promise
-      const snapshots = await songsCollection.get();
+      if (this.pendingRequest) {
+        return;
+      }
+
+      this.pendingRequest = true;
+
+      let snapshots;
+
+      if (this.songs.length) {
+        const lastDoc = await songsCollection
+          .doc(this.songs[this.songs.length - 1].docID)
+          .get();
+
+        // initiate the query; get function will return a promise
+        snapshots = await songsCollection
+          .orderBy('modified_name')
+          .startAfter(lastDoc)
+          .limit(this.maxPerPage)
+          .get();
+      } else {
+        snapshots = await songsCollection
+          .orderBy('modified_name')
+          .limit(this.maxPerPage)
+          .get();
+      }
 
       snapshots.forEach((document) => {
         this.songs.push({
@@ -79,6 +104,8 @@ export default ({
           ...document.data(),
         });
       });
+
+      this.pendingRequest = false;
     },
   },
 });
