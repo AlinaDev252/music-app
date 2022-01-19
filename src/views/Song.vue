@@ -51,7 +51,7 @@
 					</button>
 				</vee-form>
 				<!-- Sort Comments -->
-				<select
+				<select v-model= "sort"
 					class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition
           duration-500 focus:outline-none focus:border-black rounded"
 				>
@@ -63,8 +63,7 @@
 	</section>
 	<!-- Comments -->
 	<ul class="container mx-auto">
-		<li class="p-6 bg-gray-50 border border-gray-200" v-for="comment in comments"
-      :key="comment.docId">
+		<li class="p-6 bg-gray-50 border border-gray-200" v-for="comment in comments" :key="comment.docId">
 			<!-- Comment Author -->
 			<div class="mb-5">
 				<div class="font-bold">{{ comment.name }}</div>
@@ -95,10 +94,22 @@ export default {
       comment_alert_variant: 'bg-blue-500',
       comment_alert_message: 'Please wait! Your comment is being submitted.',
       comments: [],
+      // 1 will indicate that the order should be latest to oldest; 2 will be from oldest to latsest
+      sort: '1',
     };
   },
   computed: {
     ...mapState(['userLoggedIn']),
+    sortedComments() {
+      // creating a copy of the original array and sort through it. Otherwise, Eslint will throw an error
+      return this.comments.slice().sort((a, b) => {
+        if (this.sort === '1') {
+          // converting the date from a string to a date object
+          return new Date(b.datePosted) - new Date(a.datePosted);
+        }
+        return new Date(a.datePosted) - new Date(b.datePosted);
+      });
+    },
   },
   async created() {
     const docSnapshot = await songsCollection.doc(this.$route.params.id).get();
