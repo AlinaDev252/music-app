@@ -179,6 +179,7 @@ export default {
 
       await commentsCollection.add(comment);
 
+      // let the user know that their comment has been added
       this.comment_in_submission = false;
       this.comment_alert_variant = 'bg-green-500';
       this.comment_alert_message = 'Comment added!';
