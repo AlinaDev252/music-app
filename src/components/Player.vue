@@ -5,8 +5,9 @@
 		<div class="relative">
 			<!-- Play/Pause Button -->
 			<div class="float-left w-7 h-7 leading-3">
-				<button type="button">
-					<i class="fa fa-play text-gray-500 text-xl"></i>
+				<button type="button" @click.prevent="toggleAudio">
+					<i class="fa text-gray-500 text-xl"
+            :class="{ 'fa-play': !playing, 'fa-pause': playing }"></i>
 				</button>
 			</div>
 			<!-- Current Position -->
@@ -38,7 +39,15 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Player',
+  computed: {
+    ...mapGetters(['playing']),
+  },
+  methods: {
+    ...mapActions(['toggleAudio']),
+  },
 };
 </script>
