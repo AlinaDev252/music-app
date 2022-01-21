@@ -85,6 +85,9 @@ export default createStore({
       // }
     },
     async newSong({ commit, state, dispatch }, payload) {
+      if (state.sound instanceof Howl) {
+        state.sound.unload();
+      }
       commit('newSong', payload);
 
       state.sound.play();
