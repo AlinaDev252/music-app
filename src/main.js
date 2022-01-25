@@ -7,13 +7,14 @@ import { auth } from './includes/firebase';
 import Icon from './directives/icon';
 import './assets/tailwind.css';
 import './assets/main.css';
+import i18n from './i18n';
 
 // store the application into a variable to check if the app has already been initalized.
 let app;
 
 auth.onAuthStateChanged(() => {
   if (!app) {
-    app = createApp(App);
+    app = createApp(App).use(i18n);
 
     app.use(store);
     app.use(router);
