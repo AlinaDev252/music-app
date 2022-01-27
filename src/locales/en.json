@@ -3,6 +3,6 @@
     "listen": "Listen to Great Music!"
   },
   "song": {
-    "comment_count": "{count} Comments"
+    "comment_count": "No Comments | 1 Comment | {count} Comments"
   }
 }
