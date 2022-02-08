@@ -9,6 +9,7 @@ import './assets/tailwind.css';
 import './assets/main.css';
 import i18n from './includes/i18n';
 import './registerServiceWorker';
+import GlobalComponents from './includes/_globales';
 
 // store the application into a variable to check if the app has already been initalized.
 let app;
@@ -20,6 +21,7 @@ auth.onAuthStateChanged(() => {
     app.use(store);
     app.use(router);
     app.use(VeeValidatePlugin);
+    app.use(GlobalComponents);
     app.directive('icon', Icon);
 
     app.mount('#app');

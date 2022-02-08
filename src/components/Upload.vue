@@ -21,19 +21,19 @@
 			>
 				<h5>Drop your files here</h5>
 			</div>
-      <input type="file" multiple @change="upload($event)"/>
+			<input type="file" multiple @change="upload($event)" />
 			<hr class="my-6" />
 			<!-- Progess Bars -->
 			<div class="mb-4" v-for="upload in uploads" :key="upload.name">
 				<!-- File Name -->
-				<div class="font-bold text-sm" :class="upload.text_class">
-          <i :class="upload.icon"></i> {{ upload.name }}
-          </div>
+				<div class="font-bold text-sm" :class="upload.text_class"><i :class="upload.icon"></i> {{ upload.name }}</div>
 				<div class="flex h-4 overflow-hidden bg-gray-200 rounded">
 					<!-- Inner Progress Bar -->
-					<div class="transition-all progress-bar"
-            :class="upload.variant"
-            :style="{ width: upload.current_progress + '%'}"></div>
+					<div
+						class="transition-all progress-bar"
+						:class="upload.variant"
+						:style="{ width: upload.current_progress + '%' }"
+					></div>
 				</div>
 			</div>
 		</div>
@@ -57,14 +57,12 @@ export default {
       this.is_dragover = false;
 
       // convert the files object into an array
-      const files = $event.dataTransfer
-        ? [...$event.dataTransfer.files]
-        : [...$event.target.files];
+      const files = $event.dataTransfer ? [...$event.dataTransfer.files] : [...$event.target.files];
 
       // files validation to prevent user's uploading other files rather than audio
       files.forEach((file) => {
         if (file.type !== 'audio/mpeg') {
-        /* eslint-disable no-useless-return */
+          /* eslint-disable no-useless-return */
           return;
         }
 
@@ -97,35 +95,40 @@ export default {
         }) - 1;
 
         // the snapshot object represents the current status of the upload
-        task.on('state_changed', (snapshot) => {
-        // calculate how much has been transferred
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          this.uploads[uploadIndex].current_progress = progress;
-        }, (error) => {
-          this.uploads[uploadIndex].variant = 'bg-red-400';
-          this.uploads[uploadIndex].icon = 'fas fa-times';
-          this.uploads[uploadIndex].text_class = 'text-red-400';
-          console.log(error);
-        }, async () => {
-          const song = {
-            uid: auth.currentUser.uid,
-            display_name: auth.currentUser.displayName,
-            original_name: task.snapshot.ref.name,
-            modified_name: task.snapshot.ref.name,
-            genre: '',
-            comment_count: 0,
-          };
+        task.on(
+          'state_changed',
+          (snapshot) => {
+            // calculate how much has been transferred
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            this.uploads[uploadIndex].current_progress = progress;
+          },
+          (error) => {
+            this.uploads[uploadIndex].variant = 'bg-red-400';
+            this.uploads[uploadIndex].icon = 'fas fa-times';
+            this.uploads[uploadIndex].text_class = 'text-red-400';
+            console.log(error);
+          },
+          async () => {
+            const song = {
+              uid: auth.currentUser.uid,
+              display_name: auth.currentUser.displayName,
+              original_name: task.snapshot.ref.name,
+              modified_name: task.snapshot.ref.name,
+              genre: '',
+              comment_count: 0,
+            };
 
-          song.url = await task.snapshot.ref.getDownloadURL();
-          const songRef = await songsCollection.add(song);
-          const songSnapshot = await songRef.get();
+            song.url = await task.snapshot.ref.getDownloadURL();
+            const songRef = await songsCollection.add(song);
+            const songSnapshot = await songRef.get();
 
-          this.addSong(songSnapshot);
+            this.addSong(songSnapshot);
 
-          this.uploads[uploadIndex].variant = 'bg-green-400';
-          this.uploads[uploadIndex].icon = 'fas fa-check';
-          this.uploads[uploadIndex].text_class = 'text-green-400';
-        });
+            this.uploads[uploadIndex].variant = 'bg-green-400';
+            this.uploads[uploadIndex].icon = 'fas fa-check';
+            this.uploads[uploadIndex].text_class = 'text-green-400';
+          },
+        );
       });
 
       console.log(files);
