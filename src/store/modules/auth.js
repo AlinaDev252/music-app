@@ -1,8 +1,10 @@
 import { auth, usersCollection } from '@/includes/firebase';
 
 export default {
+  // // enable namespacing for the entire module
+  // namespaced: true,
   state: {
-    signout: true,
+    // signout: true,
     authModalShow: false,
     userLoggedIn: false,
   },
