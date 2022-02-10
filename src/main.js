@@ -10,6 +10,10 @@ import './assets/main.css';
 import i18n from './includes/i18n';
 import './registerServiceWorker';
 import GlobalComponents from './includes/_globales';
+import ProgressBar from './includes/progress-bar';
+import 'nprogress/nprogress.css';
+
+ProgressBar(router);
 
 // store the application into a variable to check if the app has already been initalized.
 let app;
