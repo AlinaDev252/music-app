@@ -2,6 +2,7 @@ import { auth, usersCollection } from '@/includes/firebase';
 
 export default {
   state: {
+    signout: true,
     authModalShow: false,
     userLoggedIn: false,
   },
