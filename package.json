@@ -11,6 +11,7 @@
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
+    "@aisino/cli-plugin-unit-jest": "^1.0.15",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@vee-validate/rules": "^4.4.7",
     "autoprefixer": "^9",
