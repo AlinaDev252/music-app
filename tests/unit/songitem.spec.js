@@ -1,5 +1,5 @@
 import SongItem from '@/components/SongItem.vue';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, RouterLinkStub } from '@vue/test-utils';
 
 describe('SongItem.vue', () => {
   test('renders song.display_name', () => {
@@ -10,6 +10,11 @@ describe('SongItem.vue', () => {
     const wrapper = shallowMount(SongItem, {
       propsData: {
         song,
+      },
+      global: {
+        components: {
+          'router-link': RouterLinkStub,
+        },
       },
     });
 
