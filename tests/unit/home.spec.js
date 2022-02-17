@@ -3,8 +3,7 @@ import Home from '@/views/Home.vue';
 import SongItem from '@/components/SongItem.vue';
 
 // this function allows us to mock a dependency
-jest.mock('@/includes/firebase', () => {
-});
+jest.mock('@/includes/firebase', () => {});
 
 describe('Home.vue', () => {
   test('renders list of songs', () => {
@@ -21,10 +20,19 @@ describe('Home.vue', () => {
           songs,
         };
       },
+      global: {
+        mocks: {
+          $t: (message) => message,
+        },
+      },
     });
 
     const items = component.findAllComponents(SongItem);
 
-    expect(items).toHaveLength(songs.length);
+    // expect(items).toHaveLength(songs.length);
+
+    items.forEach((wrapper, i) => {
+      expect(wrapper.props().song).toBe(songs[i]);
+    });
   });
 });
