@@ -18,7 +18,6 @@ describe('Snapshots SongItem.vue', () => {
         },
       },
     });
-
     expect(wrapper.element).toMatchSnapshot();
   });
 });
