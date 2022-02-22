@@ -4,7 +4,7 @@
     duration-300 hover:bg-gray-50 example snapshot" :class="`song-id-${song.docID}`">
     <div>
       <router-link :to="{ name: 'song', params:  { id: song.docID } }"
-        class="font-bold block text-gray-600">
+        class="font-bold block text-gray-600 composition-name">
         {{ song.modified_name }}
       </router-link>
       <span class="text-gray-500 text-sm">
